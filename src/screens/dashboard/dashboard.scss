@@ -1,0 +1,18 @@
+.dashboard {
+	// display: flex;
+	// background-color: #571057;
+	.dashboard-card {
+		display: grid;
+		flex: auto;
+		grid-template-columns: auto auto auto auto;
+		grid-template-rows: auto;
+		grid-gap: 10px;
+		grid-auto-flow: column;
+		.card {
+			width: 100%;
+			text-align: center;
+			padding: 10px 0;
+			font-size: 30px;
+		}
+	}
+}

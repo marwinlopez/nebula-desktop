@@ -1,0 +1,31 @@
+.active {
+	text-decoration: none;
+	li {
+		background-color: #440444;
+	}
+
+	.span {
+		font-size: 13px;
+		font-weight: 600;
+		color: #888;
+		margin-left: 10px;
+	}
+	.icon {
+		font-size: 18px;
+		color: #7451f8;
+	}
+}
+
+.not-active {
+	text-decoration: none;
+	.span {
+		font-size: 13px;
+		font-weight: 600;
+		color: #888;
+		margin-left: 10px;
+	}
+	.icon {
+		font-size: 18px;
+		color: #7451f8;
+	}
+}

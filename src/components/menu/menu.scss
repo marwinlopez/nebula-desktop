@@ -1,0 +1,39 @@
+.header {
+	background-color: rgba(255, 255, 255, 0.829) !important;
+	.toolbar {
+		min-height: 25px;
+		background-color: #571057;
+		// border-top: 0.5px solid #be21be;
+		padding: 0;
+		.tabs {
+			min-height: 25px;
+			.tab {
+				min-height: 25px;
+				min-width: 122px;
+				padding: 0;
+				.link {
+					text-decoration: none;
+					color: #fff;
+					font-size: 10px;
+					line-height: 2;
+					width: 100%;
+				}
+			}
+		}
+	}
+	.list {
+		display: flex;
+		padding: 5px;
+		list-style: none;
+		li {
+			padding: 5px;
+			.link {
+				text-decoration: none;
+				color: #fff;
+				font-size: 10px;
+				line-height: 2;
+				width: 100%;
+			}
+		}
+	}
+}

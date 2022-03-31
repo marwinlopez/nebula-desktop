@@ -1,0 +1,98 @@
+// padding-top: 30px;
+// background-color: #571057;
+// box-sizing: border-box;
+// border-left: 5px solid #571057;
+// border-right: 5px solid #571057;
+.app {
+	display: flex;
+	flex-direction: column;
+	font-size: 15px;
+	background-color: #d6d6d6;
+	// overflow: hidden;
+	justify-content: center;
+	.navigator {
+		padding: 7px 0;
+		position: static;
+		top: 0;
+		z-index: 10000;
+		display: flex;
+		flex-wrap: nowrap;
+		align-content: center;
+		// padding: 0 0px 0 10px;
+		width: 100vw;
+		height: 30px;
+		background-color: #571057;
+		border-bottom: 0.05px solid #971c9777;
+		.nv-title {
+			width: 20%;
+			margin-left: 10px;
+			h1 {
+				line-height: 1.2;
+				font-size: 1.5rem;
+				color: rgb(136, 136, 136);
+			}
+		}
+		.nv-container-btn {
+			width: 79%;
+			text-align: right;
+			.btn-action {
+				margin-left: 5px;
+				padding: 0 !important;
+				min-width: 30px !important;
+				background-color: #971c9777;
+				.icon {
+					color: rgb(136, 136, 136);
+					font-size: 1.5rem !important;
+				}
+			}
+		}
+	}
+	// spadding-top: 15px;
+	.app-container {
+		.signIn {
+			height: 100vh;
+			display: flex;
+			background-color: #571057;
+			.image {
+				width: 80%;
+				background-image: url('./assets/images/nebula.jpg');
+				background-size: cover;
+				background-repeat: 'no-repeat';
+				background-position: initial;
+			}
+			.paper {
+				padding: 30px;
+				height: 100%;
+				width: 20%;
+				display: flex;
+				align-items: center;
+				justify-items: center;
+				flex-direction: column;
+				justify-content: center;
+			}
+		}
+		height: 100vh;
+		// flex: 6;
+		.main {
+			display: grid;
+			margin: 0 5px;
+			.indicadores {
+				margin: 5px 0;
+			}
+			.container {
+				display: grid;
+				width: 'fit-content';
+				margin-top: 5px;
+				padding: 10px;
+				background-color: #ffffff;
+			}
+		}
+	}
+	.footer {
+		display: none;
+		position: absolute;
+		bottom: 0;
+		background-color: #571057;
+		width: 100%;
+	}
+}

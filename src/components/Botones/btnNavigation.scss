@@ -1,0 +1,86 @@
+// .btn-container {
+// 	max-width: 30;
+// 	background-color: transparent !important; //#125482;
+// 	justify-content: left !important;
+// 	padding: 0 !important;
+// 	.link {
+// 		max-width: 60px;
+// 		color: #92928f;
+// 		span {
+// 			.Mui-selected {
+// 				// color: #dad5d5;
+// 				// padding-top: 6px;
+// 				// .MuiButtonBase-root > svg > path {
+// 				// 	color: #242925;
+// 				// }
+// 				// font-size: 10px !important;
+// 				.MuiSvgIcon-root {
+// 					path {
+// 						color: #0c0c0a;
+// 					}
+// 					font-size: 20px !important;
+// 				}
+// 			}
+// 			.MuiSvgIcon-root {
+// 				path {
+// 					color: #92928f;
+// 				}
+// 				font-size: 20px !important;
+// 			}
+// 		}
+// 	}
+// 	.Mui-selected {
+// 		font-size: 14px !important;
+// 		color: #adadad;
+// 		padding: 0;
+// 		span {
+// 			color: #ffffff !important;
+// 			width: 100%;
+// 			.MuiSvgIcon-root {
+// 				path {
+// 					color: #ffffff !important;
+// 				}
+// 				font-size: 20px !important;
+// 			}
+// 		}
+// 	}
+// }
+.container {
+	padding: 0;
+	list-style: none;
+	display: flex;
+	// padding: 15px;
+
+	.pulse {
+		justify-content: center;
+		color: #571057;
+		.link {
+			min-width: 50px;
+			max-width: 90px;
+			text-align: center;
+			// border-right: 0.1px solid rgba(255, 255, 255, 0.397);
+			font-size: 10px;
+			min-height: 50px;
+			display: grid;
+			text-decoration: none;
+			justify-items: center;
+			padding: 5px;
+			color: #571057;
+			font-weight: bold;
+		}
+		:hover {
+			animation: example 4s;
+			// animation: pulse 1s;
+			background-color: 0 0 0 2em rgba(#fff, 0);
+		}
+		@keyframes example {
+			0% {
+				background-color: rgba(255, 255, 255, 0.192);
+			}
+		}
+	}
+	.active {
+		background-color: rgba(174, 255, 217, 0.534);
+		border-right: 1px solid rgba(107, 108, 109, 0.336);
+	}
+}
