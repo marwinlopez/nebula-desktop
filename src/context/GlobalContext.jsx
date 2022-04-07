@@ -20,28 +20,38 @@ export const GlobalContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(GlobalReducer, INITIAL_STATE);
 
 	useEffect(() => {
-		window.api.request('storage', null);
+		const url = window.location.pathname.split('/');
+		if (!url.includes('modal')) {
+			window.api.request('token', {
+				type: 'getMain',
+				channel: 'tokenMain',
+				authData: null,
+			});
 
-		window.api.response('authMain', data => {
-			if (data) {
-				dispatch({
-					type: 'signIn',
-					token: data.token,
-					user: data.firstName,
-					userName: data.userName,
-					remember: data.isShow,
-				});
-			}
-		});
+			window.api.response('tokenMain', data => {
+				console.log(data);
+				if (data) {
+					dispatch({
+						type: 'signIn',
+						token: data.token,
+						user: data.firstName,
+						userName: data.userName,
+						remember: data.isShow,
+					});
+				}
+			});
+		}
+		if (url.includes('login')) {
+			window.api.request('closeWindows', true);
+			console.log(url.includes('login'));
+		}
 	}, []);
 
-	const session = JSON.parse(window.sessionStorage.getItem('auth'));
-	// console.log(session);
 	const value = useMemo(
 		() => ({
-			token: session ? session.token : state.token,
-			user: session ? session.user : state.user,
-			userName: session ? session.userName : state.userName,
+			token: state.token,
+			user: state.user,
+			userName: state.userName,
 			remember: state.remember,
 			dispatch,
 		}),

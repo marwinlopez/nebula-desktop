@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom';
-import Login from '../../screens/auth/Login';
 import Dashboard from '../../screens/dashboard/Dashboard';
 import NotFound from '../../screens/notFound/NotFound';
 import Roles from '../../screens/settings/roles/Roles';
@@ -8,14 +7,11 @@ import AppMenu from '../menu/AppMenu';
 import RequireAuth from '../navigations/RequireAuth';
 import Menu from '../menu/Menu';
 import UserList from '../../screens/settings/users/UserList';
-import CreateUser from '../../screens/settings/users/CreateUser';
-import ViewUser from '../../screens/settings/users/ViewUser';
-// import { useContext } from 'react';
+import ModalUser from '../../screens/settings/users/ModalUser';
 import { UsersContextProvider } from '../../context/UsersContext';
 import SignIn from '../../screens/auth/SignIn';
+
 const AppRoute = props => {
-	// const global = useContext(GlobalContext);
-	// console.log(global);
 	return (
 		<div className='app'>
 			<AppMenu />
@@ -37,9 +33,9 @@ const AppRoute = props => {
 							</Route>
 						</Route>
 						<Route path='/login' element={<SignIn />} />
-						<Route path='/modal/create-users'>
-							<Route index element={<CreateUser />} />
-							<Route path=':id' element={<ViewUser />} />
+						<Route path='/modal/users'>
+							<Route index element={<ModalUser />} />
+							<Route path=':id' element={<ModalUser />} />
 						</Route>
 						<Route path='*' element={<NotFound />} />
 					</Routes>

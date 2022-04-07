@@ -17,6 +17,7 @@ export const signInServices = async ({ userName, password, remember }) => {
 			const userModel = new UsersModel(user);
 			const { user_roles } = user;
 			if (user_roles.length > 0) {
+				console.log(user_roles);
 				const { name, role_permissions } = user_roles[0].roles;
 
 				userModel.rol = name;
@@ -31,7 +32,12 @@ export const signInServices = async ({ userName, password, remember }) => {
 				userModel.firstName,
 				remember
 			);
-			window.api.request('storage', authentication);
+
+			window.api.request('token', {
+				type: 'setMain',
+				channel: 'tokenMain',
+				authData: authentication,
+			});
 			// window.sessionStorage.setItem('auth', JSON.stringify(authentication));
 			return { code: code, user: userModel, auth: authentication };
 		} else {

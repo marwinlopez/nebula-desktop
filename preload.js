@@ -7,12 +7,12 @@ contextBridge.exposeInMainWorld('api', {
 	request: (channel, data) => {
 		// whitelist channels
 		const validChannels = [
-			'minimizar',
-			'close',
-			'modal',
-			'close-modal',
+			'minimizarWindow',
+			'openDevTools',
+			'closeWindows',
+			'openChild',
 			'consoleLog',
-			'storage',
+			'token',
 		];
 		if (validChannels.includes(channel)) {
 			console.log(data);
@@ -21,7 +21,7 @@ contextBridge.exposeInMainWorld('api', {
 	},
 	// receive: (channel, func) => {
 	response: (channel, func) => {
-		const validChannels = ['fromMain', 'authMain'];
+		const validChannels = ['tokenMain', 'tokenChild', 'isLoading'];
 		if (validChannels.includes(channel)) {
 			// Deliberately strip event as it includes `sender`
 			ipcRenderer.on(channel, (event, ...args) => func(...args));

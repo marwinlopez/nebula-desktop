@@ -2,18 +2,20 @@ import { useContext, useEffect, useState } from 'react';
 import { routes } from '../components/navigations/SIdeBarList';
 import { GlobalContext } from '../context/GlobalContext';
 import { signInServices } from '../services/auth.service';
+import Roles from '../services/roles.services';
 export const useGlobalContext = () => {
 	const global = useContext(GlobalContext);
 	const [btnAction, setBtnAction] = useState({});
 	const [isLoading, setIsLoading] = useState(true);
-
+	const roles = new Roles();
 	useEffect(() => {
 		// window.api.request('storage', null);
 		// window.api.response('authMain', data => {
-		if (global.token) {
-			setIsLoading(false);
-		}
-	}, [global]);
+		window.api.response('isLoading', data => {
+			setIsLoading(data);
+		});
+		return isLoading;
+	}, []);
 
 	const isAuth = () => {
 		const auth = JSON.parse(window.sessionStorage.getItem('auth'));
@@ -21,7 +23,9 @@ export const useGlobalContext = () => {
 		global.dispatch({ type: 'signIn', token: auth ? auth.token : null });
 		return auth;
 	};
-	const signIn = async (data, callback) => {
+	const signIn = async (data, isRemember, callback) => {
+		data.remember = isRemember;
+		console.log(data);
 		const res = await signInServices(data);
 		if (res.code) {
 			global.dispatch({
@@ -76,6 +80,20 @@ export const useGlobalContext = () => {
 	const consoleLog = msg => {
 		window.api.request('consoleLog', msg);
 	};
+	const closeWindows = isChild => {
+		window.api.request('closeWindows', isChild);
+	};
+	const minimizeWindows = isChild => {
+		window.api.request('minimizarWindow', isChild);
+	};
+	const openDevTools = isChild => {
+		window.api.request('openDevTools', isChild);
+	};
+
+	const getRoles = async token => {
+		return roles.getRoles(token);
+	};
+
 	return {
 		accodionExpanded: false,
 		btnAction,
@@ -88,5 +106,9 @@ export const useGlobalContext = () => {
 		breadcrumb,
 		locationRoute,
 		modalAction,
+		closeWindows,
+		minimizeWindows,
+		openDevTools,
+		getRoles,
 	};
 };

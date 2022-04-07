@@ -7,40 +7,32 @@ import {
 import { useUsersContext } from '../../../context/UsersContext';
 
 const ColumnsAction = ({ params }) => {
-	const { users } = useUsersContext();
+	const { users, token } = useUsersContext();
 
 	const view = e => {
 		const user = users.filter(u => u.id === params.id).shift();
 		console.log(user);
-		window.api.request('modal', {
-			url: `/modal/create-users/${JSON.stringify(user)}`,
+		window.api.request('openChild', {
+			url: `/modal/users/${JSON.stringify({ token, type: 'view', user })}`,
 			width: 500,
-			height: 380,
+			height: 370,
 		});
 	};
 	const edit = e => {
-		// const modalAction = {
-		// 	id: params.getValue(params.id, 'id'),
-		// 	type: 'edit',
-		// 	title: 'Editar',
-		// 	firstName: 'Marin',
-		// 	lastName: 'Suarez',
-		// 	userName: 'marinsuarez',
-		// 	disabled: false,
-		// };
-		// selectAction(modalAction);
+		const user = users.filter(u => u.id === params.id).shift();
+		window.api.request('openChild', {
+			url: `/modal/users/${JSON.stringify({ token, type: 'update', user })}`,
+			width: 500,
+			height: 620,
+		});
 	};
 	const deleteItem = e => {
-		// const modalAction = {
-		// 	id: params.getValue(params.id, 'id'),
-		// 	type: 'delete',
-		// 	title: 'Eliminar',
-		// 	firstName: 'Marin',
-		// 	lastName: 'Suarez',
-		// 	userName: 'marinsuarez',
-		// 	disabled: true,
-		// };
-		// selectAction(modalAction);
+		const user = users.filter(u => u.id === params.id).shift();
+		window.api.request('openChild', {
+			url: `/modal/users/${JSON.stringify({ token, type: 'delete', user })}`,
+			width: 500,
+			height: 370,
+		});
 	};
 
 	return (

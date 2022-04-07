@@ -4,6 +4,7 @@ import {
 	useEffect,
 	useMemo,
 	useReducer,
+	useState,
 } from 'react';
 import Users from '../services/users.service';
 import UsersReducer from './UsersReducer';
@@ -15,25 +16,34 @@ const USER_DATA = {
 
 export const UsersContext = createContext();
 
+/**
+ * Context Provider Users
+ * @param {*} param0
+ * @returns
+ */
 export const UsersContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(UsersReducer, USER_DATA);
+	const [token, setToken] = useState(null);
 	const u = new Users();
 	useEffect(() => {
-		if (state.isUserData)
-			u.listUser(dispatch).then(resp =>
-				dispatch({ type: 'users', users: resp })
-			);
+		if (state.isUserData && token) getToken();
 	}, [state.isUserData]);
+
+	const getToken = () => {
+		u.listUser(token).then(resp => dispatch({ type: 'users', users: resp }));
+	};
 
 	const refresData = () => {};
 
-	const showData = () => {
+	const showData = ({ token }) => {
+		setToken(token);
 		dispatch({ type: 'show' });
 	};
 
 	const value = useMemo(
 		() => ({
 			users: state.users,
+			token,
 			showData,
 		}),
 		[state.users]

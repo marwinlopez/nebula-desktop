@@ -3,96 +3,218 @@
 // box-sizing: border-box;
 // border-left: 5px solid #571057;
 // border-right: 5px solid #571057;
-.app {
-	display: flex;
-	flex-direction: column;
-	font-size: 15px;
-	background-color: #d6d6d6;
-	// overflow: hidden;
-	justify-content: center;
-	.navigator {
-		padding: 7px 0;
-		position: static;
-		top: 0;
-		z-index: 10000;
-		display: flex;
-		flex-wrap: nowrap;
-		align-content: center;
-		// padding: 0 0px 0 10px;
-		width: 100vw;
-		height: 30px;
-		background-color: #571057;
-		border-bottom: 0.05px solid #971c9777;
-		.nv-title {
-			width: 20%;
-			margin-left: 10px;
-			h1 {
-				line-height: 1.2;
-				font-size: 1.5rem;
-				color: rgb(136, 136, 136);
+body {
+	margin: 0;
+	// padding: 0;
+	width: 100vw;
+	height: 100vh;
+	#root {
+		display: contents;
+		// flex-direction: column;
+		// font-size: 15px;
+		.app {
+			background-color: #d6d6d6;
+			// // overflow: hidden;
+			// justify-content: center;
+			.navigator {
+				padding: 7px 0;
+				position: static;
+				top: 0;
+				z-index: 10000;
+				display: flex;
+				flex-wrap: nowrap;
+				align-content: center;
+				// padding: 0 0px 0 10px;
+				width: 100vw;
+				height: 30px;
+				background-color: #571057;
+				border-bottom: 0.05px solid #971c9777;
+				.nv-title {
+					width: 20%;
+					margin-left: 10px;
+					h1 {
+						line-height: 1.2;
+						font-size: 1.5rem;
+						color: rgb(136, 136, 136);
+					}
+				}
+				.nv-container-btn {
+					width: 79%;
+					text-align: right;
+					.btn-action {
+						margin-left: 5px;
+						padding: 0 !important;
+						min-width: 30px !important;
+						background-color: #971c9777;
+						.icon {
+							color: rgb(136, 136, 136);
+							font-size: 1.5rem !important;
+						}
+					}
+				}
 			}
-		}
-		.nv-container-btn {
-			width: 79%;
-			text-align: right;
-			.btn-action {
-				margin-left: 5px;
-				padding: 0 !important;
-				min-width: 30px !important;
-				background-color: #971c9777;
-				.icon {
-					color: rgb(136, 136, 136);
-					font-size: 1.5rem !important;
+			.app-container {
+				height: 100vh;
+				.loader-container {
+					position: fixed;
+					background-color: #571057;
+					height: 100vh;
+					width: 100vw;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					.loader {
+						position: absolute;
+						width: 150px;
+						height: 150px;
+						border-radius: 50%;
+						display: inline-block;
+						border-top: 10px solid rgb(248, 214, 248);
+						border-right: 5px solid transparent;
+						box-sizing: border-box;
+						animation: rotation 1s linear infinite;
+						&::after {
+							content: '';
+							box-sizing: border-box;
+							position: absolute;
+							left: 0;
+							top: 0;
+							width: 150px;
+							height: 150px;
+							border-radius: 50%;
+							border-left: 10px solid #ff3d00;
+							border-bottom: 6px solid transparent;
+							animation: rotation 0.5s linear infinite reverse;
+						}
+						@keyframes rotation {
+							0% {
+								transform: rotate(0deg);
+							}
+							100% {
+								transform: rotate(360deg);
+							}
+						}
+					}
+				}
+				.signIn {
+					height: 100vh;
+					display: flex;
+					background-color: #571057;
+					.image {
+						width: 75vw;
+						background-image: url('./assets/images/nebula.jpg');
+						background-size: cover;
+						background-repeat: no-repeat;
+						background-position: initial;
+					}
+					.paper {
+						padding: 20px;
+						height: 100%;
+						width: 25vw;
+						display: flex;
+						align-items: center;
+						flex-direction: column;
+						.logo {
+							height: 200px;
+							display: flex;
+							align-items: center;
+						}
+						.title {
+							height: 100px;
+							display: flex;
+							align-items: center;
+						}
+						// .form-login {
+						// 	height: 300px;
+						// 	display: flex;
+						// 	align-items: center;
+						// }
+
+						.footer-login {
+							height: 200px;
+							display: flex;
+							align-items: flex-end;
+						}
+					}
+				}
+
+				.main {
+					display: grid;
+					margin: 0 5px;
+					.indicadores {
+						margin: 5px 0;
+					}
+					.container {
+						display: grid;
+						width: 'fit-content';
+						margin-top: 5px;
+						padding: 10px;
+						background-color: #ffffff;
+					}
+				}
+
+				.modal {
+					height: 100%;
+					width: 100%;
+					.modal-container {
+						display: grid;
+						padding: 10px;
+						.modal-title {
+							background-color: #fbfbfb;
+							border-bottom: 0.5px solid #d4d4d4;
+							padding: 5px;
+							.title {
+								padding-left: 5px;
+								font-size: 1.2rem;
+								color: #571057;
+							}
+						}
+						.modal-dialog {
+							display: flex;
+							background-color: #fbfbfb;
+							padding: 15px;
+							form {
+								width: 98%;
+								.text {
+									margin-bottom: 15px;
+
+									.Mui-disabled {
+										color: #d4d4d4;
+									}
+								}
+							}
+							.btn-container {
+								width: 20%;
+								display: flex;
+								padding: 0 15px;
+								flex-direction: column;
+								background-color: #fff;
+								.buttom {
+									display: grid;
+									justify-items: center;
+									background-color: #dfdfdf;
+									border: 2px solid #571057;
+									font-size: 0.5rem;
+									margin-bottom: 5px;
+									color: #571057;
+									font-weight: bold;
+								}
+								:hover {
+									background-color: #571057;
+									color: #dfdfdf;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
-	}
-	// spadding-top: 15px;
-	.app-container {
-		.signIn {
-			height: 100vh;
-			display: flex;
+		.footer {
+			display: none;
+			position: absolute;
+			bottom: 0;
 			background-color: #571057;
-			.image {
-				width: 80%;
-				background-image: url('./assets/images/nebula.jpg');
-				background-size: cover;
-				background-repeat: 'no-repeat';
-				background-position: initial;
-			}
-			.paper {
-				padding: 30px;
-				height: 100%;
-				width: 20%;
-				display: flex;
-				align-items: center;
-				justify-items: center;
-				flex-direction: column;
-				justify-content: center;
-			}
+			width: 100%;
 		}
-		height: 100vh;
-		// flex: 6;
-		.main {
-			display: grid;
-			margin: 0 5px;
-			.indicadores {
-				margin: 5px 0;
-			}
-			.container {
-				display: grid;
-				width: 'fit-content';
-				margin-top: 5px;
-				padding: 10px;
-				background-color: #ffffff;
-			}
-		}
-	}
-	.footer {
-		display: none;
-		position: absolute;
-		bottom: 0;
-		background-color: #571057;
-		width: 100%;
 	}
 }
