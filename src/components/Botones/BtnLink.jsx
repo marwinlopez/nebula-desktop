@@ -12,7 +12,7 @@ const BtnLink = ({ m }) => {
 	return (
 		<li key={`link-${m.name}`} className={selected ? 'pulse active' : 'pulse'}>
 			<Link className='link' to={m.to}>
-				{m.icon}
+				<img src={require(`../../img/${m.icon}`)} />
 				{m.name}
 			</Link>
 		</li>

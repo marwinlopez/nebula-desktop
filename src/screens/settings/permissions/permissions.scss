@@ -1,0 +1,68 @@
+.permissions {
+	display: grid;
+	grid-template-areas: 'title' 'permissions-container';
+	grid-template-rows: 50px 1fr;
+	grid-template-columns: 1fr;
+	margin: 0 5px;
+	.title {
+		grid-area: title;
+		display: grid;
+		align-content: center;
+		justify-content: center;
+		background-color: #571057;
+		color: #d8d8d8;
+		font-family: 'Nunito', sans-serif;
+		font-weight: bold;
+		font-size: 1rem;
+		margin: 5px 0;
+		border-radius: 50px;
+	}
+	.permissions-container {
+		grid-area: permissions-container;
+		margin: 0 5px 5px 5px;
+		padding: 5px;
+		background-color: #ffffff;
+		display: grid;
+		grid-template-columns: 200px 1fr;
+		.rols {
+			display: grid;
+			// background-color: aquamarine;
+		}
+		.moduls {
+			display: grid;
+			grid-template-areas: 'moduls-container' 'footer-moduls';
+			grid-template-rows: 1fr 50px;
+			grid-template-columns: 1fr;
+			.moduls-container {
+				grid-area: moduls-container;
+				display: grid;
+				flex: auto;
+				grid-template-columns: repeat(4, 1fr);
+				grid-template-rows: auto;
+				grid-gap: 10px;
+				grid-auto-flow: column;
+				.card {
+					display: grid;
+					grid-template-areas: 'card-header' 'checked-list';
+					grid-template-rows: 40px 1fr;
+					grid-template-columns: 1fr;
+					.card-header {
+						display: grid;
+						align-items: center;
+						justify-content: center;
+						background-color: #571057;
+						color: #d8d8d8;
+						font-family: 'Nunito', sans-serif;
+						font-weight: bold;
+						border-radius: 50px;
+						font-size: 1rem;
+					}
+				}
+			}
+			.footer-moduls {
+				grid-area: footer-moduls;
+				background-color: #565656;
+			}
+		}
+	}
+}

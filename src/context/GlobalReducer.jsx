@@ -3,10 +3,12 @@ const GlobalReducer = (state, action) => {
 		case 'signIn': {
 			return {
 				...state,
+				tenantId: action.tenantId,
 				token: action.token,
 				user: action.user,
 				userName: action.userName,
 				remember: action.remember,
+				moduls: action.moduls,
 			};
 		}
 		case 'signUp': {

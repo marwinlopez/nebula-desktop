@@ -1,5 +1,6 @@
-.roles {
+.users {
 	display: grid;
+	height: 100%;
 	grid-template-areas: 'title' 'lista';
 	grid-template-rows: 50px 1fr;
 	grid-template-columns: 1fr;

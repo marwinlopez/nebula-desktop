@@ -19,16 +19,19 @@ function createWindow() {
 	mainWindow = new BrowserWindow({
 		width,
 		height,
-		resizable: true,
-		maximizable: false,
-		fullscreen: true,
-		fullscreenable: true,
-		titleBarStyle: 'hidden',
-		type: 'desktop',
+		minWidth: 940,
+		minHeight: 560,
+		// resizable: true,
+		// maximizable: false,
+		// fullscreen: true,
+		// fullscreenable: true,
+		// titleBarStyle: 'hidden',
+		// type: 'desktop',
 		frame: false,
 		webPreferences: {
-			nodeIntegration: false, // is default value after Electron v5
+			nodeIntegration: true, // is default value after Electron v5
 			contextIsolation: true, // protect against prototype pollution
+			devTools: true,
 			enableRemoteModule: false, // turn off remote
 			preload: path.join(__dirname, 'preload.js'), // use a preload script
 		},
@@ -75,9 +78,10 @@ function createchild(url, width, height) {
 		height,
 		frame: false,
 		title: 'modal',
+		movable: true,
 		parent: mainWindow,
-		// modal: true,
-		// visibleOnAllWorkspaces: true,
+		modal: true,
+		visibleOnAllWorkspaces: true,
 		webPreferences: {
 			nodeIntegration: false, // is default value after Electron v5
 			contextIsolation: true, // protect against prototype pollution
@@ -159,6 +163,10 @@ ipcMain.on('token', (event, args) => {
 	}
 });
 
+ipcMain.on('socketReq', (event, arg) => {
+	mainWindow.webContents.send('socketResp', arg);
+});
+
 const setStorage = args => {
 	storage.set('auth', args, function (error) {
 		if (error) throw error;
@@ -167,9 +175,7 @@ const setStorage = args => {
 const getStorage = (event, channel) => {
 	storage.get('auth', function (error, data) {
 		if (error) throw error;
-		console.log('auth', channel);
 		event.reply(channel, data);
-		console.log('auth', data);
 		mainWindow.webContents.send('isLoading', false);
 	});
 };

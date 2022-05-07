@@ -1,13 +1,8 @@
-import axios from 'axios';
-import config from '../config/config.json';
 import RolModel from '../models/Rol.Model';
+import http from './httpServices';
 export default class Roles {
-	async getRoles(token) {
-		const resp = await axios.get(`${config.ip}/api/v1/roles`, {
-			headers: {
-				Authorization: `Bearer ${token}`,
-			},
-		});
+	async getRoles() {
+		const resp = await http.get('/api/v1/roles');
 
 		const { status, data } = resp;
 		if (status === 200) {

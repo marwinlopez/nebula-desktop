@@ -2,14 +2,12 @@ import { MenuItem, Select } from '@mui/material';
 import { memo, useEffect, useState } from 'react';
 import { useGlobalContext } from '../../hooks/useGlobalContext';
 
-const SelectRol = ({ isToken, rol, handleInput, option }) => {
+const SelectRol = ({ rol, handleInput, option }) => {
 	const { getRoles } = useGlobalContext();
 	const [roles, setRoles] = useState([]);
-	// const [isRol, setIsRol] = useState(0);
+
 	useEffect(() => {
-		console.log(rol);
-		// if (rol !== null && rol.id) setIsRol(rol.id);
-		getRoles(isToken).then(role => {
+		getRoles().then(role => {
 			setRoles(role);
 		});
 	}, []);
@@ -34,7 +32,6 @@ const SelectRol = ({ isToken, rol, handleInput, option }) => {
 				);
 			})}
 		</Select>
-		// <h1>hola</h1>
 	);
 };
 

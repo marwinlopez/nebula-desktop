@@ -3,17 +3,22 @@ import './App.scss';
 import AppRoute from './components/route/AppRoute';
 
 import { ThemeProvider, responsiveFontSizes, createTheme } from '@mui/material';
-// import { GlobalContext } from './context/GlobalContext';
-// import { useContext } from 'react';
+import AppMenu from './components/menu/AppMenu';
+import AppFooter from './components/footer/AppFooter';
+import { useGlobalContext } from './context/GlobalContext';
 
 const App = props => {
+	const { classApp } = useGlobalContext();
 	const theme = responsiveFontSizes(createTheme());
-	// const global = useContext(GlobalContext);
-	// console.log(global);
+
 	return (
 		<ThemeProvider theme={theme}>
 			<BrowserRouter {...props}>
-				<AppRoute {...props} />
+				<div className={classApp}>
+					<AppMenu />
+					<AppRoute {...props} />
+					<AppFooter />
+				</div>
 			</BrowserRouter>
 		</ThemeProvider>
 	);

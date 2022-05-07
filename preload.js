@@ -13,15 +13,22 @@ contextBridge.exposeInMainWorld('api', {
 			'openChild',
 			'consoleLog',
 			'token',
+			'socketReq',
 		];
 		if (validChannels.includes(channel)) {
-			console.log(data);
+			// console.log(data);
 			ipcRenderer.send(channel, data);
 		}
 	},
 	// receive: (channel, func) => {
 	response: (channel, func) => {
-		const validChannels = ['tokenMain', 'tokenChild', 'isLoading'];
+		const validChannels = [
+			'tokenMain',
+			'tokenChild',
+			'httpToken',
+			'isLoading',
+			'socketResp',
+		];
 		if (validChannels.includes(channel)) {
 			// Deliberately strip event as it includes `sender`
 			ipcRenderer.on(channel, (event, ...args) => func(...args));

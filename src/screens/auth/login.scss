@@ -1,0 +1,108 @@
+.login {
+	background-color: #d6d6d6;
+	overflow: hidden;
+	display: grid;
+	width: 100vw;
+	height: 100vh;
+	grid-template-areas: 'topBar' 'signIn' 'footer';
+	grid-template-rows: 40px 1fr 30px;
+	grid-template-columns: 1fr;
+	.topBar {
+		grid-area: topBar;
+		display: flex;
+		flex-direction: row;
+		width: 100vw;
+		height: 40px;
+		background-color: #571057;
+		-webkit-user-select: none;
+		user-select: none;
+		.titleBar {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			width: 100%;
+			.title {
+				margin-left: 10px;
+				width: 100%;
+				line-height: 30px;
+				margin-top: 5px;
+				padding-bottom: 5px;
+				-webkit-app-region: drag;
+				h1 {
+					font-size: 15pt;
+				}
+			}
+		}
+		.titleBarBtns {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-end;
+			width: 100%;
+			height: 40px;
+			.topBtn {
+				width: 40px;
+				height: 40px;
+				border: none;
+				outline: none;
+				cursor: pointer;
+				background-color: transparent;
+				background-repeat: no-repeat;
+				background-position: center;
+				transition: 0.2s;
+				color: #949aa7;
+				font-size: 15pt;
+				font-weight: bold;
+			}
+			.topBtn:active {
+				background-color: #4f9fee;
+			}
+		}
+		.minimizeBtn:hover,
+		.maximizeBtn:hover,
+		.restoreBtn:hover {
+			background-color: #272c36;
+			color: #fff;
+		}
+		.closeBtn:hover {
+			background-color: #aa0e0e;
+			color: #fff;
+		}
+	}
+	.signIn {
+		grid-area: signIn;
+		height: 100vh;
+		display: flex;
+		background-color: #571057;
+		.image {
+			width: 75vw;
+			background-image: url('../../assets/images/nebula.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: initial;
+		}
+		.paper {
+			padding: 20px;
+			height: 100%;
+			width: 25vw;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			.logo {
+				height: 200px;
+				display: flex;
+				align-items: center;
+			}
+			.title {
+				height: 100px;
+				display: flex;
+				align-items: center;
+			}
+		}
+	}
+	.footer {
+		grid-area: footer;
+		bottom: 0;
+		background-color: #571057;
+		width: 100%;
+	}
+}

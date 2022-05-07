@@ -22,7 +22,7 @@ export const items = [
 				isActive: true,
 			},
 			{
-				name: 'Unidades de Medidas',
+				name: 'Unidad de Medidas',
 				to: '/inventory/unit-of-measurement',
 				icon: <img src={require('../../img/unidad-medida.png')} />,
 				isActive: true,

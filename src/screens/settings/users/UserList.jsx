@@ -1,51 +1,15 @@
 import { Fab, Tooltip, Typography } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import { DataGrid, esES } from '@mui/x-data-grid';
-
+import './users.scss';
 import { useEffect, useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import Modal from '../../../components/modal/Modal';
 import { Columns } from '../../../components/users/columns/Columns';
 import { useUsersContext } from '../../../context/UsersContext';
 import { useGlobalContext } from '../../../hooks/useGlobalContext';
-
-const useStyles = makeStyles({
-	root: {
-		'& .super-app-theme--header': {
-			backgroundColor: '#571057',
-			color: '#fff',
-			fontSize: 10,
-			'& span': {
-				color: '#fff',
-			},
-		},
-		'& .MuiDataGrid-root': { borderRadius: '5px !important' },
-		'& .MuiDataGrid-main': {
-			'& .MuiDataGrid-columnsContainer, .MuiDataGrid-cell': {
-				borderBottom: '1px solid #f0f0f0',
-				fontSize: 12,
-			},
-
-			'& .MuiDataGrid-columnsContainer': {
-				borderTopLeftRadius: 5,
-				borderTopRightRadius: 5,
-				backgroundColor: '#571057',
-				color: '#fff',
-				fontSize: 10,
-				'& .MuiDataGrid-columnHeader': {
-					fontSize: 12,
-					width: 50,
-				},
-				'& span': {
-					color: '#fff',
-				},
-			},
-		},
-	},
-});
+import GridSimple from '../../../components/table/GridSimple';
 
 const UserList = () => {
-	const classes = useStyles();
 	const { users, showData, token } = useUsersContext();
 	const { global } = useGlobalContext();
 	const [rows, setRows] = useState([]);
@@ -77,30 +41,18 @@ const UserList = () => {
 	}, [users]);
 
 	return (
-		<div className='main'>
-			<div className='container'>
-				<div className='title'>
-					<Typography>Lista de Usuarios</Typography>
-				</div>
-				<div className={classes.root} style={{ height: 350, width: '100%' }}>
-					<DataGrid
-						disableColumnMenu
-						headerHeight={30}
-						disableDensitySelector
-						rows={rows}
-						columns={Columns}
-						pageSize={5}
-						disableSelectionOnClick
-						localeText={esES.components.MuiDataGrid.defaultProps.localeText}
-					/>
-				</div>
+		<div className='main users'>
+			<div className='title'>
+				<div className='azul'></div>
+				<Typography>Lista de Usuarios</Typography>
 			</div>
+			<GridSimple rows={rows} columns={Columns} />
 			<Tooltip
-				title='Add'
+				title='Agregar nuevo usuario'
 				aria-label='add'
 				style={{
 					position: 'absolute',
-					bottom: 10,
+					bottom: 20,
 					right: 10,
 				}}
 				onClick={() => {
@@ -109,6 +61,7 @@ const UserList = () => {
 							token,
 							type: 'create',
 							user: {
+								tenantId: global.tenantId,
 								firstName: null,
 								lastName: null,
 								userName: null,

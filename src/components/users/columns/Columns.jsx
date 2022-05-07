@@ -15,7 +15,7 @@ export const Columns = [
 		headerClassName: 'super-app-theme--header',
 		minWidth: 150,
 		flex: 1,
-		editable: true,
+		editable: false,
 	},
 	{
 		field: 'lastName',
@@ -23,7 +23,7 @@ export const Columns = [
 		headerClassName: 'super-app-theme--header',
 		minWidth: 150,
 		flex: 1,
-		editable: true,
+		editable: false,
 	},
 	{
 		field: 'userName',

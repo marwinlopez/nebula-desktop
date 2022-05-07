@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
 import { TextField } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
@@ -12,6 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { DeleteForeverSharp, ExitToAppSharp } from '@mui/icons-material';
 import { useGlobalContext } from '../../../hooks/useGlobalContext';
 import SelectRol from '../../../components/select/SelectRol';
+import Users from '../../../services/user/users.service';
 
 const useStyles = makeStyles(theme => ({
 	text: {
@@ -60,15 +59,18 @@ const useStyles = makeStyles(theme => ({
 const ModalUser = () => {
 	const classes = useStyles();
 	const params = useParams();
-	const { closeWindows, getRoles } = useGlobalContext();
+	const { closeWindows, refreshGrid } = useGlobalContext();
+
 	const [state, setState] = useState({
+		id: null,
+		tenantId: null,
 		firstName: null,
 		lastName: null,
 		userName: null,
 		email: null,
 		rol: null,
 	});
-	const [isToken, setIsToken] = useState(null);
+
 	const [isAction, setIsAction] = useState({
 		title: '',
 		btnGuardar: false,
@@ -77,15 +79,17 @@ const ModalUser = () => {
 		btnCancel: false,
 		btnExit: true,
 	});
+
 	const [isUpdateOrCreate, setIsUpdateOrCreate] = useState(false);
+
 	const [isLoading, setIsLoading] = useState(true);
-	const [roles, setRoles] = useState([]);
 
 	useEffect(() => {
+		let isMounted = true;
 		const urlParams = JSON.parse(params.id);
-		const { type, user, token } = urlParams;
+		const { type, user } = urlParams;
+		console.log(user);
 		setState({ ...state, ...user });
-		setIsToken(token);
 		switch (type) {
 			case 'view':
 				setTimeout(() => {
@@ -125,32 +129,32 @@ const ModalUser = () => {
 					btnCancel: true,
 				});
 				break;
-
-			default:
-				console.log('first');
-				break;
 		}
-		setTimeout(() => {
+		if (isMounted) {
 			setIsLoading(false);
-		}, 1000);
-		return isUpdateOrCreate;
+		}
+		return () => {
+			isMounted = false;
+		};
 	}, []);
 
 	useEffect(() => {
+		let isMounted = true;
 		const { rol } = state;
 		if (rol) {
 			const { id } = state.rol;
-			console.log(state.rol);
-			setState({
-				...state,
-				rol: {
-					id: id,
-				},
-			});
-			// getRoles(isToken).then(resp => {
-			// 	setRoles(resp);
-			// });
+			if (isMounted) {
+				setState({
+					...state,
+					rol: {
+						id: id,
+					},
+				});
+			}
 		}
+		return () => {
+			isMounted = false;
+		};
 	}, []);
 
 	const handleCloseWindows = () => {
@@ -175,11 +179,17 @@ const ModalUser = () => {
 	}, []);
 
 	const createUser = () => {
-		console.log('Crear');
+		const u = new Users();
+		u.create(state).then(user => {
+			refreshGrid(true);
+		});
 	};
 
 	const updateUser = () => {
-		console.log('editar');
+		const u = new Users();
+		u.update(state).then(user => {
+			refreshGrid(true);
+		});
 	};
 
 	const deleteUser = () => {
@@ -280,7 +290,6 @@ const ModalUser = () => {
 						>
 							<InputLabel id='rol-label'>Rol</InputLabel>
 							<SelectRol
-								isToken={isToken}
 								rol={state.rol}
 								handleInput={handleInput}
 								option={classes.option}

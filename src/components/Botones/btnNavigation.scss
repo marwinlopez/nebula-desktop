@@ -45,26 +45,24 @@
 // 		}
 // 	}
 // }
-.container {
+.container-btn-navigation {
 	padding: 0;
 	list-style: none;
 	display: flex;
-	// padding: 15px;
-
+	height: 64px;
 	.pulse {
 		justify-content: center;
 		color: #571057;
 		.link {
-			min-width: 50px;
-			max-width: 90px;
+			min-width: 70px;
+			max-width: 80px;
 			text-align: center;
-			// border-right: 0.1px solid rgba(255, 255, 255, 0.397);
 			font-size: 10px;
-			min-height: 50px;
+			min-height: 55px;
 			display: grid;
 			text-decoration: none;
 			justify-items: center;
-			padding: 5px;
+			padding: 4px;
 			color: #571057;
 			font-weight: bold;
 		}
@@ -80,7 +78,7 @@
 		}
 	}
 	.active {
-		background-color: rgba(174, 255, 217, 0.534);
+		background-color: rgba(113, 26, 153, 0.534);
 		border-right: 1px solid rgba(107, 108, 109, 0.336);
 	}
 }

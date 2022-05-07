@@ -1,0 +1,7 @@
+.products {
+	display: grid;
+	height: 100%;
+	grid-template-areas: 'title' 'lista';
+	grid-template-rows: 100px 1fr;
+	grid-template-columns: 1fr;
+}

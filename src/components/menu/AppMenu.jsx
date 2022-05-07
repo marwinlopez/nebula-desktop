@@ -27,24 +27,29 @@ const AppMenu = () => {
 	};
 
 	return (
-		<div className='navigator'>
-			<div className='nv-title'>
-				<h1>Nebula</h1>
+		<header className='topBar'>
+			<div className='titleBar'>
+				<div className='title'>
+					<h1>Nebula</h1>
+				</div>
 			</div>
-			{/* {url.includes('modal') ? null : ( */}
-			<div className='nv-container-btn'>
-				<Button className='btn-action' onClick={handleMinimizeWindows}>
-					<MinimizeIcon className='icon' />
-				</Button>
-				<Button className='btn-action' onClick={handleShowDevelopers}>
-					<SettingsIcon className='icon' />
-				</Button>
-				<Button className='btn-action' onClick={handleCloseWindows}>
-					<ExitToAppIcon className='icon' />
-				</Button>
-			</div>
-			{/* )} */}
-		</div>
+			{url.includes('modal') ? null : (
+				<div className='titleBarBtns'>
+					<Button
+						className='topBtn maximizeBtn'
+						onClick={handleMinimizeWindows}
+					>
+						<MinimizeIcon className='icon' />
+					</Button>
+					<Button className='topBtn maximizeBtn' onClick={handleShowDevelopers}>
+						<SettingsIcon className='icon' />
+					</Button>
+					<Button className='topBtn closeBtn' onClick={handleCloseWindows}>
+						<ExitToAppIcon className='icon' />
+					</Button>
+				</div>
+			)}
+		</header>
 	);
 };
 

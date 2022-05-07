@@ -1,6 +1,7 @@
 export default class UsersModel {
 	constructor({
 		id,
+		tenantId,
 		firstName = null,
 		lastName = null,
 		userName,
@@ -12,6 +13,7 @@ export default class UsersModel {
 		permissions = [],
 	}) {
 		this.id = id;
+		this.tenantId = tenantId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userName = userName;

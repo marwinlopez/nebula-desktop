@@ -12,7 +12,7 @@ export default function BtnNavigation({ moduls }) {
 	}, [location]);
 	return (
 		<nav>
-			<ul className='container'>
+			<ul className='container-btn-navigation'>
 				<li className={selected ? 'pulse active' : 'pulse'}>
 					<Link className='link' to='/'>
 						<img src={require('../../img/dashboard.png')} />
@@ -22,19 +22,7 @@ export default function BtnNavigation({ moduls }) {
 				{moduls
 					.filter(m => m.isActive)
 					.map(m => {
-						return (
-							<BtnLink key={`btn-link-${m.name}`} m={m} />
-							// <li
-							// 	key={`link-${m.name}`}
-							// 	className='pulse'
-							// 	onClick={handleChange(m.name)}
-							// >
-							// 	<Link className='link' to={m.to}>
-							// 		{m.icon}
-							// 		{m.name}
-							// 	</Link>
-							// </li>
-						);
+						return <BtnLink key={`btn-link-${m.name}`} m={m} />;
 					})}
 			</ul>
 		</nav>

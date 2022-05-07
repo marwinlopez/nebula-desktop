@@ -71,15 +71,15 @@ const DialogActions = withStyles(theme => ({
 }))(MuiDialogActions);
 
 export default function Modal({ open, setOpen, data }) {
-	const handleClickOpen = () => {
-		setOpen(true);
-	};
+	// const handleClickOpen = () => {
+	// 	setOpen(true);
+	// };
 	const handleClose = () => {
 		setOpen(false);
 	};
 
 	return (
-		<div>
+		<>
 			<Dialog
 				onClose={handleClose}
 				aria-labelledby='customized-dialog-title'
@@ -207,6 +207,6 @@ export default function Modal({ open, setOpen, data }) {
 					) : null}
 				</DialogActions>
 			</Dialog>
-		</div>
+		</>
 	);
 }

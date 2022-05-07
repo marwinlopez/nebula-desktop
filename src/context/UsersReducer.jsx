@@ -18,6 +18,12 @@ const UsersReducer = (state, action) => {
 				expanded: action.to,
 			};
 		}
+		case 'classApp': {
+			return {
+				...state,
+				classApp: action.classApp,
+			};
+		}
 		default:
 			return state;
 	}

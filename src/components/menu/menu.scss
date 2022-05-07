@@ -1,5 +1,5 @@
 .header {
-	background-color: rgba(255, 255, 255, 0.829) !important;
+	// background-color: rgba(255, 255, 255, 0.829) !important;
 	.toolbar {
 		min-height: 25px;
 		background-color: #571057;
@@ -13,6 +13,7 @@
 				padding: 0;
 				.link {
 					text-decoration: none;
+					font-family: 'Nunito', sans-serif;
 					color: #fff;
 					font-size: 10px;
 					line-height: 2;

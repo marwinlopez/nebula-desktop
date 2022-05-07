@@ -1,6 +1,14 @@
 .dashboard {
-	// display: flex;
-	// background-color: #571057;
+	display: grid;
+	// height: 100%;
+	grid-template-areas: 'indicadores' 'container';
+	grid-template-rows: 100px 1fr;
+	grid-template-columns: 1fr;
+	margin: 5px;
+	.indicadores {
+		grid-area: indicadores;
+		margin: 5px 0;
+	}
 	.dashboard-card {
 		display: grid;
 		flex: auto;
@@ -15,4 +23,12 @@
 			font-size: 30px;
 		}
 	}
+	.container {
+		display: grid;
+		// margin-top: 5px;
+		padding: 10px;
+		background-color: #ffffff;
+	}
+	// display: flex;
+	// background-color: #571057;
 }

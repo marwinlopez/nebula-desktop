@@ -6,7 +6,7 @@ import {
 	useReducer,
 	useState,
 } from 'react';
-import Users from '../services/users.service';
+import Users from '../services/user/users.service';
 import UsersReducer from './UsersReducer';
 
 const USER_DATA = {
@@ -22,28 +22,60 @@ export const UsersContext = createContext();
  * @returns
  */
 export const UsersContextProvider = ({ children }) => {
+	/**
+	 *
+	 */
 	const [state, dispatch] = useReducer(UsersReducer, USER_DATA);
-	const [token, setToken] = useState(null);
-	const u = new Users();
-	useEffect(() => {
-		if (state.isUserData && token) getToken();
-	}, [state.isUserData]);
 
-	const getToken = () => {
-		u.listUser(token).then(resp => dispatch({ type: 'users', users: resp }));
+	/**
+	 *
+	 */
+	const [token, setToken] = useState(null);
+
+	/**
+	 *
+	 */
+	const u = new Users();
+
+	/**
+	 *
+	 */
+	useEffect(() => {
+		if (state.isUserData && token) getUsers();
+	}, [state.isUserData]);
+	/**
+	 *
+	 */
+	useEffect(() => {
+		window.api.response('socketResp', data => {
+			getUsers();
+		});
+	}, []);
+
+	/**
+	 * Obtine la una lista de todos los usuarios
+	 */
+	const getUsers = () => {
+		u.listUser().then(resp => dispatch({ type: 'users', users: resp }));
 	};
 
-	const refresData = () => {};
-
+	/**
+	 *
+	 * @param {*} param0
+	 */
 	const showData = ({ token }) => {
 		setToken(token);
 		dispatch({ type: 'show' });
 	};
 
+	/**
+	 *
+	 */
 	const value = useMemo(
 		() => ({
 			users: state.users,
 			token,
+			dispatch,
 			showData,
 		}),
 		[state.users]
@@ -54,6 +86,10 @@ export const UsersContextProvider = ({ children }) => {
 	);
 };
 
+/**
+ *
+ * @returns
+ */
 export const useUsersContext = () => {
 	return useContext(UsersContext);
 };

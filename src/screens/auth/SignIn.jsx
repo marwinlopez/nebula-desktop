@@ -1,3 +1,4 @@
+import './login.scss';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -8,10 +9,11 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useGlobalContext } from '../../hooks/useGlobalContext';
 import { signInStyles } from '../../components/styles/signInStyles';
 import Loader from '../../components/loader/Loader';
+import { GlobalContext } from '../../context/GlobalContext';
 
 function Copyright() {
 	return (
@@ -29,6 +31,7 @@ function Copyright() {
 const SignIn = () => {
 	const classes = signInStyles();
 	const { global, signIn, isLoading } = useGlobalContext();
+	const { updatePathName } = useContext(GlobalContext);
 	const { user, remember, userName } = global;
 	const [isRemember, setIsRemember] = useState(false);
 	const [isError, setIsError] = useState({
@@ -49,7 +52,10 @@ const SignIn = () => {
 		remember: false,
 	});
 	const navigate = useNavigate();
-
+	useEffect(() => {
+		const pathName = window.location.pathname;
+		updatePathName(pathName);
+	}, []);
 	useEffect(() => {
 		setState(prevState => ({
 			...prevState,
@@ -116,10 +122,10 @@ const SignIn = () => {
 		e.preventDefault();
 		if (validate()) {
 			signIn(state, isRemember, () => {
-				navigate('/');
+				navigate('/', { replace: true });
 			}).then(res => {
 				if (res.code) {
-					console.log(res);
+					navigate('/');
 				} else {
 					const { errorType, errorMessage } = res.errors;
 					setIsError({
