@@ -38,6 +38,9 @@ const Permissions = () => {
 					})}
 				</div>
 				<div className='moduls'>
+					<div className='header-permissions'>
+						<Typography>Modulos Disponibles</Typography>
+					</div>
 					<div className='moduls-container'>
 						{checked.length > 0 && moduls.length > 0 ? (
 							moduls.map(modul => {
@@ -57,9 +60,6 @@ const Permissions = () => {
 					</div>
 					<div className='footer-moduls'>soy el footer</div>
 				</div>
-				{/* <div className='permissions'>
-					<ModulList moduls={permissions} check={checkedPermissions} />
-				</div> */}
 			</div>
 		</div>
 	);

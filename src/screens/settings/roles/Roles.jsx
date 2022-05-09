@@ -2,6 +2,7 @@ import { Typography } from '@mui/material';
 import './roles.scss';
 import { makeStyles } from '@mui/styles';
 import { DataGrid, esES } from '@mui/x-data-grid';
+import GridSimple from '../../../components/table/GridSimple';
 
 const useStyles = makeStyles({
 	root: {
@@ -80,7 +81,8 @@ const Roles = () => {
 				<Typography>Lista de Roles</Typography>
 			</div>
 			<div className='lista' style={{ height: '90%', width: '100%' }}>
-				<DataGrid
+				<GridSimple rows={rows} columns={columns} />
+				{/* <DataGrid
 					className={classes.root}
 					disableColumnMenu
 					headerHeight={30}
@@ -90,7 +92,7 @@ const Roles = () => {
 					pageSize={5}
 					disableSelectionOnClick
 					localeText={esES.components.MuiDataGrid.defaultProps.localeText}
-				/>
+				/> */}
 			</div>
 		</div>
 	);

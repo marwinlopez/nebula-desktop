@@ -35,7 +35,7 @@ const useStyles = makeStyles({
 		},
 	},
 });
-const GridSimple = ({ rows, columns }) => {
+const GridSimple = ({ rows, columns, classGrdiSimple }) => {
 	const classes = useStyles();
 	return (
 		<div
@@ -46,6 +46,7 @@ const GridSimple = ({ rows, columns }) => {
 				disableColumnMenu
 				headerHeight={30}
 				disableDensitySelector
+				className={classGrdiSimple || null}
 				rows={rows}
 				columns={columns}
 				pageSize={5}

@@ -30,9 +30,22 @@
 		}
 		.moduls {
 			display: grid;
-			grid-template-areas: 'moduls-container' 'footer-moduls';
-			grid-template-rows: 1fr 50px;
+			grid-template-areas: 'header-permissions' 'moduls-container' 'footer-moduls';
+			grid-template-rows: 50px 1fr 50px;
 			grid-template-columns: 1fr;
+			.header-permissions {
+				grid-area: header-permissions;
+				display: grid;
+				height: 45px;
+				align-items: center;
+				justify-content: center;
+				background-color: #571057;
+				color: #d8d8d8;
+				font-family: 'Nunito', sans-serif;
+				font-weight: bold;
+				border-radius: 50px;
+				font-size: 1rem;
+			}
 			.moduls-container {
 				grid-area: moduls-container;
 				display: grid;
